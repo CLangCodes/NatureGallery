@@ -17,13 +17,13 @@ export default async function getBase64ImageUrl(
   const buffer = await response.arrayBuffer();
 
   let minified: Buffer;
-  // Bypass imagemin-jpegtran on Windows due to missing jpegtran.exe
-  if (process.platform === 'win32') {
-    minified = Buffer.from(buffer);
-  } else {
+  try {
     minified = await imagemin.buffer(Buffer.from(buffer), {
       plugins: [imageminJpegtran()],
     });
+  } catch (e) {
+    // Fallback: use the original buffer if jpegtran fails (e.g., binary missing)
+    minified = Buffer.from(buffer);
   }
 
   url = `data:image/jpeg;base64,${minified.toString("base64")}`;
