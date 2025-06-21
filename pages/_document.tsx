@@ -8,7 +8,7 @@ class MyDocument extends Document {
           <link rel="icon" href="/favicon.ico" />
           <meta
             name="description"
-            content="A collection of nature photography taken by C. Langlois"
+            content="A collection of nature photography taken by C. Langlois."
           />
           <meta property="og:site_name" content="d1ub1sgvr3a6jw.cloudfront.net/" />
           <meta
